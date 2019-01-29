@@ -1,0 +1,90 @@
+html, body {
+    height: 100%;
+}
+
+.btn-primary {
+    background-color: #2780f6;
+    border-color: #2780f6;
+}
+
+button:focus {
+    outline: none;
+}
+
+/* NAVIGATION */
+.navbar-brand {
+    padding: 20px 0;
+}
+
+.nav-link {
+    text-align: center;
+    padding: 0.3rem 0.7rem;
+}
+
+.nav-item {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.nav-item.active {
+    border-bottom: 2px solid #2780f6;
+}
+
+.nav-item:hover {
+    border-bottom: 2px solid rgba(0,0,0,.4);
+}
+
+.navbar-light .navbar-toggler {
+    border: none;
+}
+/* End NAVIGATION */
+
+.main {
+    margin-top: 180px;
+    flex: 1;
+}
+
+.main > section {
+    margin-bottom: 60px;
+}
+
+/* FORM */
+.form-control {
+    height: 50px;
+    border-radius: 0;
+}
+
+.col-form-label {
+    font-weight: 300;
+}
+/* End FORM */
+
+@media (max-width: 768px) {
+    .main {
+        margin-top: 150px;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    .nav-item.active {
+        border-bottom: none;
+    }
+
+    .navbar-light .navbar-nav .active>.nav-link {
+        color: #2780f6;
+        font-weight: 600;
+    }
+}
+
+@media (max-width: 540px) {
+.navbar {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+    .navbar-brand img {
+        height: 25px;
+    }
+}

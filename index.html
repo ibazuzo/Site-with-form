@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Iulian's Form Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+        crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="main.css" />
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+    <script src="main.js"></script>
+
+</head>
+
+<body class="d-flex flex-column">
+    <!-- Header -->
+    <header class="container-fluid fixed-top bg-light">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a href="#" class="navbar-brand">
+                    <img src="images/logo.svg" alt="Actum">
+                </a>
+                <!-- Responsive Menu Button -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#extendedHeaderMenu"
+                    aria-controls="extendedHeaderMenu" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <!-- Navigation -->
+                <div class="collapse navbar-collapse" id="extendedHeaderMenu">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- End Navigation -->
+            </nav>
+        </div>
+    </header>
+    <!-- End Header -->
+    <!-- Main Content -->
+    <div class="main">
+        <section id="formSection">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-12">
+                        <div class="container">
+                            <form id="form">
+                                <div class="form-group row">
+                                    <label for="formName" class="col-lg-2 col-form-label">Name</label>
+                                    <div class="col-lg-10">
+                                        <input type="text" class="form-control" id="formName" placeholder="Name" value="John"
+                                            required>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="formSurname" class="col-lg-2 col-form-label">Surname</label>
+                                    <div class="col-lg-10">
+                                        <input type="text" class="form-control" id="formSurname" placeholder="Surname"
+                                            value="Smith" required>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="forlgateOfBirth" class="col-lg-2 col-form-label">Date of Birth</label>
+                                    <div class="col-lg-10">
+                                        <input type="date" class="form-control" id="forlgateOfBirth" placeholder="Date of birth">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="formEmail" class="col-lg-2 col-form-label">Email address</label>
+                                    <div class="col-lg-10">
+                                        <input type="email" class="form-control" id="formEmail" placeholder="Email" value="test@test.com" required>
+                                    </div>
+                                </div>
+                                <!-- Radio buttons -->
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                        <legend class="col-form-label col-lg-2 pt-0">Gender</legend>
+                                        <div class="col-lg-10">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="formGender" id="formGenderMale"
+                                                    value="true" checked>
+                                                <label class="form-check-label" id="formGenderMaleLabel" for="formGenderMale">
+                                                    Male
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="formGender" id="formGenderFemale"
+                                                    value="false">
+                                                <label class="form-check-label" id="formGenderFemaleLabel" for="formGenderFemale">
+                                                    Female
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <!-- End Radio Buttons -->
+                                <div class="form-group row">
+                                    <label for="formNumberChildren" class="col-lg-2 col-form-label">Number of children</label>
+                                    <div class="col-lg-10">
+                                        <input type="number" class="form-control" id="formNumberChildren" placeholder="Number of children" min="0" max="10">
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary mt-4 px-5">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- End Main Content -->
+    <!-- Footer -->
+    <footer class="card-footer bg-light">
+        <div class="container">
+            <span class="text-muted">@2019 Copyright Iulian Vasilescu</span>
+        </div>
+    </footer>
+    <!-- End Footer -->
+</body>
+
+</html>
