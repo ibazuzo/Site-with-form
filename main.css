@@ -57,6 +57,23 @@ button:focus {
 .col-form-label {
     font-weight: 300;
 }
+
+form .alert {
+    flex: 1;
+    margin-bottom: 0;
+    margin-left: 30px;
+    padding: 0.35rem 1.25rem;
+}
+
+.error {
+    border-color: #ff0000;
+}
+
+.error-message {
+color: #ff0000;
+font-style: italic;
+}
+
 /* End FORM */
 
 @media (max-width: 768px) {

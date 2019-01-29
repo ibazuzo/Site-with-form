@@ -74,9 +74,9 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="forlgateOfBirth" class="col-lg-2 col-form-label">Date of Birth</label>
+                                    <label for="formDateOfBirth" class="col-lg-2 col-form-label">Date of Birth</label>
                                     <div class="col-lg-10">
-                                        <input type="date" class="form-control" id="forlgateOfBirth" placeholder="Date of birth">
+                                        <input type="date" class="form-control" id="formDateOfBirth" placeholder="Date of birth">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -114,7 +114,10 @@
                                         <input type="number" class="form-control" id="formNumberChildren" placeholder="Number of children" min="0" max="10">
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary mt-4 px-5">Submit</button>
+                                <div class="d-flex">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <div id="serverResponse" class="alert"></div>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -126,7 +129,7 @@
     <!-- Footer -->
     <footer class="card-footer bg-light">
         <div class="container">
-            <span class="text-muted">@2019 Copyright Iulian Vasilescu</span>
+            <span class="text-muted">@2019 Copyright - Iulian Vasilescu</span>
         </div>
     </footer>
     <!-- End Footer -->
