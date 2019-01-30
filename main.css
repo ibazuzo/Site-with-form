@@ -2,12 +2,18 @@ html, body {
     height: 100%;
 }
 
+.btn {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
 .btn-primary {
     background-color: #2780f6;
     border-color: #2780f6;
 }
 
-button:focus {
+:focus {
+    box-shadow: none !important;
     outline: none;
 }
 
@@ -54,6 +60,11 @@ button:focus {
     border-radius: 0;
 }
 
+.form-control:focus {
+    box-shadow: none;
+    border-color: #2780f6;
+}
+
 .col-form-label {
     font-weight: 300;
 }
@@ -83,6 +94,7 @@ font-style: italic;
 
     .btn {
         width: 100%;
+        margin-bottom: 1rem;
     }
 
     .nav-item.active {
@@ -92,6 +104,19 @@ font-style: italic;
     .navbar-light .navbar-nav .active>.nav-link {
         color: #2780f6;
         font-weight: 600;
+    }
+
+    .form-submit {
+        flex-direction: column;
+    }
+
+    form .alert {
+        margin-bottom: 1rem;
+        margin-left: 0;
+    }
+
+    footer .container {
+        text-align: center;
     }
 }
 
