@@ -2,14 +2,14 @@ const formValidation = {};
 
 function init() {
     const form = document.getElementById('form');
-    form.onsubmit = submit;
+    // form.onsubmit = submit;
 
 
-    document.addEventListener('blur', function (event) {
+    document.addEventListener('blur', event => {
 
         formValidation[event.target.id] = event.target.validity.valid;
 
-        var error = hasError(event.target);
+        let error = hasError(event.target);
 
         if (error) {
             showError(event.target, error);
@@ -20,15 +20,16 @@ function init() {
 
     }, true);
 
-    document.addEventListener('submit', function (event) {
+    document.addEventListener('submit', event => {
 
         // Get all of the form elements
-        var fields = event.target.elements;
+        let fields = event.target.elements;
+        resetServerResponse();
 
         // Validate each field
         // Store the first field with an error to a variable so we can bring it into focus later
-        var error, hasErrors;
-        for (var i = 0; i < fields.length; i++) {
+        let error, hasErrors;
+        for (let i = 0; i < fields.length; i++) {
             error = hasError(fields[i]);
             if (error) {
                 showError(fields[i], error);
@@ -38,14 +39,13 @@ function init() {
             }
         }
 
-        // If there are errrors, don't submit form and focus on first element with error
+        // If there are errors, don't submit form and focus on first element with error
         if (hasErrors) {
             event.preventDefault();
             hasErrors.focus();
-        }
-
-        // Otherwise, let the form submit normally
-        // You could also bolt in an Ajax form submit process here
+        } 
+        // Otherwise, check server response
+        else checkServer();
 
     }, false);
 }
@@ -57,7 +57,7 @@ function hasError(field) {
     if (field.disabled || field.type === 'file' || field.type === 'reset' || field.type === 'submit' || field.type === 'button') return;
 
     // Get validity
-    var validity = field.validity;
+    let validity = field.validity;
 
     // If valid, return null
     if (validity.valid) return;
@@ -75,10 +75,10 @@ function hasError(field) {
     }
 
     // If too short
-    if (validity.tooShort) return 'Please lengthen this text to ' + field.getAttribute('minLength') + ' characters or more. You are currently using ' + field.value.length + ' characters.';
+    if (validity.tooShort) return `Please lengthen this text to ${field.getAttribute('minLength')} characters or more. You are currently using ${field.value.length} characters.`;
 
     // If too long
-    if (validity.tooLong) return 'Please shorten this text to no more than ' + field.getAttribute('maxLength') + ' characters. You are currently using ' + field.value.length + ' characters.';
+    if (validity.tooLong) return `Please shorten this text to no more than ${field.getAttribute('maxLength')} characters. You are currently using ${field.value.length} characters.`;
 
     // If number input isn't a number
     if (validity.badInput) return 'Please enter a number.';
@@ -87,10 +87,10 @@ function hasError(field) {
     if (validity.stepMismatch) return 'Please select a valid value.';
 
     // If a number field is over the max
-    if (validity.rangeOverflow) return 'Please select a value that is no more than ' + field.getAttribute('max') + '.';
+    if (validity.rangeOverflow) return `Please select a value that is no more than ${field.getAttribute('max')}.`;
 
     // If a number field is below the min
-    if (validity.rangeUnderflow) return 'Please select a value that is no less than ' + field.getAttribute('min') + '.';
+    if (validity.rangeUnderflow) return `Please select a value that is no less than ${field.getAttribute('min')}.`;
 
     // If pattern doesn't match
     if (validity.patternMismatch) {
@@ -115,9 +115,9 @@ function showError(field, error) {
 
     // If the field is a radio button and part of a group, error all and get the last item in the group
     if (field.type === 'radio' && field.name) {
-        var group = document.getElementsByName(field.name);
+        let group = document.getElementsByName(field.name);
         if (group.length > 0) {
-            for (var i = 0; i < group.length; i++) {
+            for (let i = 0; i < group.length; i++) {
                 // Only check fields in current form
                 if (group[i].form !== field.form) continue;
                 group[i].classList.add('error');
@@ -127,21 +127,21 @@ function showError(field, error) {
     }
 
     // Get field id or name
-    var id = field.id || field.name;
+    let id = field.id || field.name;
     if (!id) return;
 
     // Check if error message field already exists
     // If not, create one
-    var message = field.form.querySelector('.error-message#error-for-' + id);
+    let message = field.form.querySelector(`.error-message#error-for-${id}`);
     if (!message) {
         message = document.createElement('div');
         message.className = 'error-message';
-        message.id = 'error-for-' + id;
+        message.id = `error-for-${id}`;
 
         // If the field is a radio button or checkbox, insert error after the label
-        var label;
+        let label;
         if (field.type === 'radio' || field.type === 'checkbox') {
-            label = field.form.querySelector('label[for="' + id + '"]') || field.parentNode;
+            label = field.form.querySelector(`label[for="${id}"]`) || field.parentNode;
             if (label) {
                 label.parentNode.insertBefore(message, label.nextSibling);
             }
@@ -154,7 +154,7 @@ function showError(field, error) {
     }
 
     // Add aria role to the field for screen readers
-    field.setAttribute('aria-describedby', 'error-for-' + id);
+    field.setAttribute('aria-describedby', `error-for-${id}`);
 
     // Update error message
     message.innerHTML = error;
@@ -173,9 +173,9 @@ function removeError(field) {
 
     // If the field is a radio button and part of a group, remove error from all and get the last item in the group
     if (field.type === 'radio' && field.name) {
-        var group = document.getElementsByName(field.name);
+        let group = document.getElementsByName(field.name);
         if (group.length > 0) {
-            for (var i = 0; i < group.length; i++) {
+            for (let i = 0; i < group.length; i++) {
                 // Only check fields in current form
                 if (group[i].form !== field.form) continue;
                 group[i].classList.remove('error');
@@ -192,7 +192,7 @@ function removeError(field) {
     if (!id) return;
 
     // Check if an error message is in the DOM
-    let message = field.form.querySelector('.error-message#error-for-' + id + '');
+    let message = field.form.querySelector(`.error-message#error-for-${id}`);
     if (!message) return;
 
     // If error message is found, hide it
@@ -201,28 +201,10 @@ function removeError(field) {
     message.style.visibility = 'hidden';
 }
 
-// Check the validity of the whole form
-function isFormValid() {
-    for (key in formValidation) {
-        if (formValidation[key] === false) {
-            return false;
-        }
-    }
-
-    return true;
-}
-
-function submit() {
+function checkServer() {
     event.preventDefault();
 
-    // If the form has at least one invalid field, submit is aborted
-    if (!isFormValid()) {
-        return;
-    }
-
-    // Reset the validation html for the message that printed on screen regarding the submision status
-    resetServerResponse();
-
+    // API location
     const url = 'https://actum-form-ulcrunoxba.now.sh/api/submit';
 
     const name = document.getElementById('formName').value;
@@ -246,6 +228,7 @@ function submit() {
         .then(response => showResponseMessage(response));
 }
 
+// Display Server response
 function showResponseMessage(response) {
     const messageContainer = document.getElementById('serverResponse');
 
@@ -260,7 +243,7 @@ function showResponseMessage(response) {
     messageContainer.innerHTML = response.message;
 }
 
-// Reset the validation html for the message that printed on screen regarding the submision status
+// Reset the server response that was displayed on screen
 function resetServerResponse() {
     const messageContainer = document.getElementById('serverResponse');
 
