@@ -8,8 +8,13 @@ html, body {
 }
 
 .btn-primary {
-    background-color: #2780f6;
-    border-color: #2780f6;
+    background-color: #09b5bb;
+    border-color: #09b5bb;
+}
+
+.btn-primary:hover {
+    background-color: #1e8286;
+    border-color: #1e8286;
 }
 
 :focus {
@@ -27,13 +32,30 @@ html, body {
     padding: 0.3rem 0.7rem;
 }
 
+li.nav-item.highlighted .nav-link {
+    background: linear-gradient(to left, #e6d220 0, rgba(216, 213, 17, 0.3) 50%, #e6d220 100%);
+    background-size: 170% 100%;
+    background-position: right bottom;
+    transition:all 400ms ease;
+    border: 1px solid #fff;
+    border-radius: 4px;
+    box-shadow: 0 0 4px #999;
+}
+li.nav-item.highlighted:hover .nav-link {
+    background-position: left bottom;
+}
+
+li.highlighted:hover {
+    border: none;
+}
+
 .nav-item {
     margin-left: 10px;
     margin-right: 10px;
 }
 
 .nav-item.active {
-    border-bottom: 2px solid #2780f6;
+    border-bottom: 2px solid #09b5bb;
 }
 
 .nav-item:hover {
@@ -62,7 +84,7 @@ html, body {
 
 .form-control:focus {
     box-shadow: none;
-    border-color: #2780f6;
+    border-color: #09b5bb;
 }
 
 .col-form-label {
@@ -102,7 +124,7 @@ font-style: italic;
     }
 
     .navbar-light .navbar-nav .active>.nav-link {
-        color: #2780f6;
+        color: #09b5bb;
         font-weight: 600;
     }
 
